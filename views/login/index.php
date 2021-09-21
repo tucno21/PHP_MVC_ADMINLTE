@@ -1,6 +1,7 @@
 <?php
 include '../views/frontend/head.php';
 ?>
+
 <main class="form-signin">
     <form method="post">
 

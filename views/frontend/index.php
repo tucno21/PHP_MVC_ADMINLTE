@@ -1,6 +1,12 @@
 <?php
 // debuguear(isset($_SESSION));
 include '../views/frontend/head.php';
+
+if (!isset($_SESSION)) {
+    session_start();
+}
+$auth = $_SESSION['iniciarSesion'] ?? false;
+
 ?>
 
 <header class="site-header sticky-top py-1">
@@ -12,8 +18,11 @@ include '../views/frontend/head.php';
                 <path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94" />
             </svg>
         </a>
-        <a class="py-2 d-none d-md-inline-block" href="/slogin">Iniciar sesion</a>
-        <a class="py-2 d-none d-md-inline-block" href="/logout">cerrar sesion</a>
+        <?php if ($auth) : ?>
+            <a class="py-2 d-none d-md-inline-block" href="/logout">cerrar sesion</a>
+        <?php else : ?>
+            <a class="py-2 d-none d-md-inline-block" href="/slogin">Iniciar sesion</a>
+        <?php endif; ?>
     </nav>
 </header>
 
@@ -22,7 +31,11 @@ include '../views/frontend/head.php';
         <div class="col-md-5 p-lg-5 mx-auto my-5">
             <h1 class="display-4 fw-normal"> Bienvenido</h1>
             <p class="lead fw-normal">pagina de prueba</p>
-            <a class="btn btn-outline-secondary" href="/slogin">Iniciar sesion</a>
+            <?php if ($auth) : ?>
+                <a class="btn btn-outline-secondary" href="/dashboard">Panel de control</a>
+            <?php else : ?>
+                <a class="btn btn-outline-secondary" href="/slogin">Iniciar sesion</a>
+            <?php endif; ?>
         </div>
         <div class="product-device shadow-sm d-none d-md-block"></div>
         <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
