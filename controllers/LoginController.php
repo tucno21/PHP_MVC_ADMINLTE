@@ -40,8 +40,9 @@ class LoginController
 
                                     if ($respuesta->estado == 1) {
 
+                                        date_default_timezone_set('America/Lima');
                                         $fh = date("Y-m-d H:i:s");
-                                        $args['access_date'] = $fh;
+                                        $args['date_access'] = $fh;
                                         Login::update($args, $respuesta->id);
 
                                         session_start();
