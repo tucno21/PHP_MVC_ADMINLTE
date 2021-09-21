@@ -2,7 +2,7 @@
 
 function conectarBD(): mysqli
 {
-    $db = new mysqli('localhost', 'root', 'root', 'sistema_votacion');
+    $db = new mysqli('localhost', 'root', 'root', 'sistema_votacion2');
 
     if (!$db) {
         echo 'coneccion incorrecta';
